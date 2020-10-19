@@ -1,0 +1,30 @@
+---
+version: '3'
+services:
+
+# START SERVICE streamsets.base
+  streamsets:
+    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.streamsets.base:3.10.1
+    environment: ['SDC_JAVA_OPTS=-Xmx${CONTECO_DC_STREAMSETS_DEPLOY_RESOURCES_RESERVATIONS_MEMORY} -Xms${CONTECO_DC_STREAMSETS_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}']
+    command: []
+    volumes: ['${CONTECO_STACKPREFIX}_streamsets_volume:/data']
+    ports: []
+    networks: [${CONTECO_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      replicas: ${CONTECO_DC_STREAMSETS_DEPLOY_REPLICAS}
+      resources:
+        limits:
+          cpus: '${CONTECO_DC_STREAMSETS_DEPLOY_RESOURCES_LIMITS_CPUS}'
+          memory: '${CONTECO_DC_STREAMSETS_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          cpus: '${CONTECO_DC_STREAMSETS_DEPLOY_RESOURCES_RESERVATIONS_CPUS}'
+          memory: '${CONTECO_DC_STREAMSETS_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+      placement:
+        constraints: [${CONTECO_DC_STREAMSETS_DEPLOY_PLACEMENT_CONSTRAINTS}]
+      labels: [${CONTECO_DC_STREAMSETS_DEPLOY_LABELS}]
+    labels: [${CONTECO_DC_STREAMSETS_LABELS}]
+# END SERVICE streamsets.base
+
+volumes: {${CONTECO_STACKPREFIX}_streamsets_volume: { external: true }}
+networks: {${CONTECO_NETWORKLOCAL}_overlay: { external: true }}

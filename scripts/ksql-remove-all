@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# TERMINATE QUERIES
+curl -s -X "POST" "http://${CONTECO_HOSTNAME}:8088/ksql" \
+        -H "Content-Type: application/vnd.ksql.v1+json; charset=utf-8" \
+        -d '{"ksql": "SHOW QUERIES;"}' | \
+ jq '.[].queries[].id' | \
+ xargs -Ifoo curl -X "POST" "http://${CONTECO_HOSTNAME}:8088/ksql" \
+          -H "Content-Type: application/vnd.ksql.v1+json; charset=utf-8" \
+          -d '{"ksql": "TERMINATE 'foo';"}'
+
+# DROP STREAMS
+curl -s -X "POST" "http://${CONTECO_HOSTNAME}:8088/ksql" \
+           -H "Content-Type: application/vnd.ksql.v1+json; charset=utf-8" \
+           -d '{"ksql": "SHOW STREAMS;"}' | \
+    jq '.[].streams[].name' | \
+    xargs -Ifoo curl -X "POST" "http://${CONTECO_HOSTNAME}:8088/ksql" \
+             -H "Content-Type: application/vnd.ksql.v1+json; charset=utf-8" \
+             -d '{"ksql": "DROP STREAM 'foo';"}'
+
+# DROP TABLES
+curl -s -X "POST" "http://${CONTECO_HOSTNAME}:8088/ksql" \
+            -H "Content-Type: application/vnd.ksql.v1+json; charset=utf-8" \
+            -d '{"ksql": "SHOW TABLES;"}' | \
+     jq '.[].tables[].name' | \
+     xargs -Ifoo curl -X "POST" "http://${CONTECO_HOSTNAME}:8088/ksql" \
+              -H "Content-Type: application/vnd.ksql.v1+json; charset=utf-8" \
+              -d '{"ksql": "DROP TABLE 'foo';"}'
+
+
+#curl -s -X "POST" "http://vcweb-l03:8088/ksql" \
+#        -H "Content-Type: application/vnd.ksql.v1+json; charset=utf-8" \
+#        -d '{"ksql": "SHOW QUERIES;"}' | \
+# jq '.[].queries[].id' | \
+# xargs -Ifoo curl -X "POST" "http://vcweb-l03:8088/ksql" \
+#          -H "Content-Type: application/vnd.ksql.v1+json; charset=utf-8" \
+#          -d '{"ksql": "TERMINATE 'foo';"}'
+
+#CSAS_CONTAINER_LOGS_RAW_AVRO_15
+#curl -X "POST" "http://vcweb-l03:8088/ksql" \
+#         -H "Content-Type: application/vnd.ksql.v1+json; charset=utf-8" \
+#         -d '{"ksql": "TERMINATE 'CSAS_CONTAINER_LOGS_RAW_AVRO_15';"}'

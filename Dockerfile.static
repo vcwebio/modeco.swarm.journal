@@ -1,0 +1,33 @@
+##### BEGIN modeco/Dockerfile/image-header #####
+FROM vcwebio/conteco.image.wrapper AS base
+##### END modeco/Dockerfile/image-header #####
+
+##### BEGIN modeco/Dockerfile/conteco #####
+COPY ./modeco/ /modeco/
+RUN rm -rf /conteco/repo
+COPY ./ /conteco/repo/
+##### END modeco/Dockerfile/conteco #####
+
+##### BEGIN image/Dockerfile/build-instructions #####
+##### END image/Dockerfile/build-instructions #####
+
+##### BEGIN modeco/Dockerfile/env-labels-footer #####
+ENV CONTECO_REALM="vcwebio" \
+    CONTECO_ECOSYSTEM="modeco" \
+    CONTECO_TYPE="swarm" \
+    CONTECO_NAME="g2" \
+    CONTECO_TAG="v2.0.3" \
+    CONTECO_BASE="image.wrapper" \
+    CONTECO_BUILD="modeco"
+LABEL io.vcweb.schema-version="1.0" \
+      io.vcweb.realm="vcwebio" \
+      io.vcweb.ecosystem="modeco" \
+      io.vcweb.type="swarm" \
+      io.vcweb.name="g2" \
+      io.vcweb.tag="v2.0.3" \
+      io.vcweb.base="image.wrapper" \
+      io.vcweb.build="modeco" \
+      io.vcweb.label="swarm.g2 - ModEco" \
+      io.vcweb.description="The swarm monitoring module with KSQL Server." \
+      io.vcweb.docker.cmd.help="docker run vcwebio/modeco.swarm.g2 --help"
+##### END modeco/Dockerfile/env-labels-footer #####

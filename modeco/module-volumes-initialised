@@ -1,0 +1,5 @@
+ekg_elasticsearch_volume:/usr/share/elasticsearch/data
+ekg_grafana_volume:/var/lib/grafana
+export_streamsets_volume:/data
+processor_streamsets_volume:/data
+

@@ -1,0 +1,12 @@
+#!/usr/bi/env bash
+
+export CONTECO_LABEL="swarm.journal - ModEco"
+export CONTECO_DESCRIPTION="The swarm monitoring module sourcing from journal with KSQL Server."
+
+export CONTECO_TYPE="swarm"
+export CONTECO_NAME="journal"
+export CONTECO_TAG="v1.0.0"
+export CONTECO_TAG_TYPE="incremental"
+
+export CONTECO_BASE="image.wrapper"
+export CONTECO_BUILD="modeco"

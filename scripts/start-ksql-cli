@@ -1,0 +1,11 @@
+DOLLAR='$'
+echo ""
+echo "RUN THE COOMAND BELOW IN A CONSOLE ON THE HOST FROM THE ROOT OF THE MODECO WORKING FOLDER."
+echo ""
+echo "# WINDOWS"
+echo "docker run -it -v %cd%/${CONTECO_REALM_RUNTIME}/${CONTECO_ECOSYSTEM_RUNTIME}.${CONTECO_TYPE}.${CONTECO_NAME}/modeco/configs/ksql:/conteco/pwd --log-driver none ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.ksql_cli.base --base http://${CONTECO_HOSTNAME}:8088"
+echo ""
+echo "# LINUX"
+echo "docker run -it -v ${DOLLAR}(pwd)/${CONTECO_REALM_RUNTIME}/${CONTECO_ECOSYSTEM_RUNTIME}.${CONTECO_TYPE}.${CONTECO_NAME}/modeco/configs/ksql:/conteco/pwd --log-driver none ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.ksql_cli.base --base http://${CONTECO_HOSTNAME}:8088"
+echo ""
+echo ""

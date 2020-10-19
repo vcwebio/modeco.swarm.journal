@@ -1,0 +1,10 @@
+
+CREATE STREAM SWARM_METRICBEAT_OVERLAY_INPUT ( `@timestamp` string, origin varchar, node varchar, overlay varchar, event_dataset varchar, event_module varchar )
+ WITH ( KAFKA_TOPIC='swarm_metricbeat_overlay', VALUE_FORMAT='JSON', KEY='`@timestamp`' );
+
+CREATE TABLE test WITH (VALUE_FORMAT='avro') AS
+SELECT event_module, event_dataset, COUNT(*) AS records
+FROM STREAM SWARM_METRICBEAT_OVERLAY_INPUT
+WINDOW TUMBLING (size 30 second)
+GROUP BY event_module, event_dataset
+HAVING COUNT(*) > 1;
