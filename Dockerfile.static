@@ -15,19 +15,19 @@ COPY ./ /conteco/repo/
 ENV CONTECO_REALM="vcwebio" \
     CONTECO_ECOSYSTEM="modeco" \
     CONTECO_TYPE="swarm" \
-    CONTECO_NAME="g2" \
-    CONTECO_TAG="v2.0.3" \
+    CONTECO_NAME="journal" \
+    CONTECO_TAG="v1.0.0" \
     CONTECO_BASE="image.wrapper" \
     CONTECO_BUILD="modeco"
 LABEL io.vcweb.schema-version="1.0" \
       io.vcweb.realm="vcwebio" \
       io.vcweb.ecosystem="modeco" \
       io.vcweb.type="swarm" \
-      io.vcweb.name="g2" \
-      io.vcweb.tag="v2.0.3" \
+      io.vcweb.name="journal" \
+      io.vcweb.tag="v1.0.0" \
       io.vcweb.base="image.wrapper" \
       io.vcweb.build="modeco" \
-      io.vcweb.label="swarm.g2 - ModEco" \
-      io.vcweb.description="The swarm monitoring module with KSQL Server." \
-      io.vcweb.docker.cmd.help="docker run vcwebio/modeco.swarm.g2 --help"
+      io.vcweb.label="swarm.journal - ModEco" \
+      io.vcweb.description="The swarm monitoring module sourcing from journal with KSQL Server." \
+      io.vcweb.docker.cmd.help="docker run vcwebio/modeco.swarm.journal --help"
 ##### END modeco/Dockerfile/env-labels-footer #####

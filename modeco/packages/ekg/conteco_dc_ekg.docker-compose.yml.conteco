@@ -4,7 +4,7 @@ services:
 
 # START SERVICE elasticsearch.base
   elasticsearch:
-    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.elasticsearch.base:7.8.0
+    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.elasticsearch.base:7.9.2
     environment: ['cluster.name=elasticsearch', 'bootstrap.memory_lock=true', ES_JAVA_OPTS=-Xms${CONTECO_DC_EKG_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY} -Xmx${CONTECO_DC_EKG_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}, 'discovery.type=single-node']
     command: []
     volumes: ['${CONTECO_STACKPREFIX}_elasticsearch_volume:/usr/share/elasticsearch/data']
@@ -22,7 +22,7 @@ ${CONTECO_DC_EKG_ELASTICSEARCH_COMPOSE_EXTENSIONS}
 
 # START SERVICE kibana.base
   kibana:
-    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.kibana.base:7.8.0
+    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.kibana.base:7.9.2
     environment: ['ELASTICSEARCH_HOSTS=http://elasticsearch:9200','SERVER_BASEPATH=/${CONTECO_URLPREFIX}/kibana']
     command: []
     volumes: []
@@ -40,7 +40,7 @@ ${CONTECO_DC_EKG_KIBANA_COMPOSE_EXTENSIONS}
 
 # START SERVICE grafana.base
   grafana:
-    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.grafana.base:7.0.5
+    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.grafana.base:7.2.1
     environment: ['GF_LOG_FORMAT=json', 'GF_LOG_FILE_FORMAT=json', 'GF_LOG_CONSOLE_FORMAT=json', 'GF_LOG_SYSLOG_FORMAT=json', 'GF_LOG_LEVEL=warn', 'GF_SERVER_ROOT_URL=/${CONTECO_URLPREFIX}/grafana']
     command: []
     volumes: ['${CONTECO_STACKPREFIX}_grafana_volume:/var/lib/grafana']

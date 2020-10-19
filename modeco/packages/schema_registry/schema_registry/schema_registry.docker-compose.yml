@@ -4,7 +4,7 @@ services:
 
 # START SERVICE schema_registry.base
   schema_registry:
-    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.schema_registry.base:5.4.0
+    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.schema_registry.base:6.0.0
     environment: ['SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181', 'SCHEMA_REGISTRY_HOST_NAME= schema_registry']
     command: []
     volumes: ['${CONTECO_STACKPREFIX}_schema_registry_secrets_volume:/etc/schema-registry/secrets']
