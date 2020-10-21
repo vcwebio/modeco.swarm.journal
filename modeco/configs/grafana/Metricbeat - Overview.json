@@ -16,22 +16,27 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 9,
-  "iteration": 1582025818968,
+  "iteration": 1603286754782,
   "links": [],
   "panels": [
     {
       "columns": [],
       "datasource": "Swam Metricbeat Node",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "100%",
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 18,
         "x": 0,
         "y": 0
       },
       "id": 36,
       "links": [],
-      "options": {},
       "pageSize": null,
       "scroll": true,
       "showHeader": true,
@@ -41,13 +46,17 @@
       },
       "styles": [
         {
+          "$$hashKey": "object:98",
           "alias": "Time",
+          "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "pattern": "Time",
           "type": "date"
         },
         {
+          "$$hashKey": "object:99",
           "alias": "Container",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -63,7 +72,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:100",
           "alias": "Memory Used",
+          "align": "auto",
           "colorMode": "cell",
           "colors": [
             "#3f6833",
@@ -82,7 +93,9 @@
           "unit": "mbytes"
         },
         {
+          "$$hashKey": "object:101",
           "alias": "Node",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -98,7 +111,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:102",
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -117,6 +132,7 @@
           "alias": "memory",
           "bucketAggs": [
             {
+              "$$hashKey": "object:15",
               "fake": true,
               "field": "container_name.keyword",
               "id": "4",
@@ -129,6 +145,7 @@
               "type": "terms"
             },
             {
+              "$$hashKey": "object:16",
               "fake": true,
               "field": "node.keyword",
               "id": "3",
@@ -143,6 +160,7 @@
           ],
           "metrics": [
             {
+              "$$hashKey": "object:13",
               "field": "docker_memory_usage_total",
               "id": "1",
               "inlineScript": "_value / (1024 * 1024)",
@@ -163,168 +181,7 @@
       "timeFrom": "2m",
       "title": "Container Memory Usage",
       "transform": "table",
-      "type": "table"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Swam Metricbeat Node",
-      "fill": 1,
-      "fillGradient": 2,
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 12,
-        "y": 0
-      },
-      "id": 26,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "container_name.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "1",
-                "size": "20"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "hide": true,
-          "metrics": [
-            {
-              "field": "docker_network_in_bytes",
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "max"
-            }
-          ],
-          "query": "Where node = $node",
-          "refId": "A",
-          "timeField": "@timestamp"
-        },
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "container_name.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "missing": null,
-                "order": "desc",
-                "orderBy": "1",
-                "size": "20"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "metrics": [
-            {
-              "field": "docker_network_in_bytes",
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            }
-          ],
-          "refId": "B",
-          "timeField": "@timestamp"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Docker Containers - Top 20 - Network In Bytes/min",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "decbytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "type": "table-old"
     },
     {
       "aliasColors": {},
@@ -332,6 +189,13 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Swam Metricbeat Overlay",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -340,6 +204,7 @@
         "x": 18,
         "y": 0
       },
+      "hiddenSeries": false,
       "id": 12,
       "legend": {
         "avg": false,
@@ -355,10 +220,11 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.2.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -533,138 +399,6 @@
       }
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Swam Metricbeat Node",
-      "fill": 1,
-      "fillGradient": 2,
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 12,
-        "y": 4
-      },
-      "id": 30,
-      "interval": "30s",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "container_name.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "1",
-                "size": "20"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "metrics": [
-            {
-              "field": "docker_diskio_read_bytes",
-              "hide": true,
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "max"
-            },
-            {
-              "field": "1",
-              "id": "4",
-              "meta": {},
-              "pipelineAgg": "1",
-              "settings": {},
-              "type": "derivative"
-            }
-          ],
-          "query": "Where node = $node",
-          "refId": "A",
-          "timeField": "@timestamp"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Docker Containers - Top 20 - Disk IO Reads Bytes/min",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": null,
-          "format": "decbytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
       "columns": [
         {
           "text": "Avg",
@@ -672,6 +406,12 @@
         }
       ],
       "datasource": "Swam Metricbeat Overlay",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "100%",
       "gridPos": {
         "h": 7,
@@ -681,7 +421,6 @@
       },
       "id": 40,
       "links": [],
-      "options": {},
       "pageSize": null,
       "scroll": true,
       "showHeader": true,
@@ -692,12 +431,14 @@
       "styles": [
         {
           "alias": "Time",
+          "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "pattern": "Time",
           "type": "date"
         },
         {
           "alias": "Value",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -714,6 +455,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1026,7 +768,7 @@
       "timeShift": null,
       "title": "Elasticsearch",
       "transform": "timeseries_aggregations",
-      "type": "table"
+      "type": "table-old"
     },
     {
       "aliasColors": {},
@@ -1034,14 +776,292 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Swam Metricbeat Node",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 2,
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 32,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "7.2.1",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "container_name.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "1",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "docker_diskio_write_bytes",
+              "hide": true,
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "avg"
+            },
+            {
+              "field": "1",
+              "id": "3",
+              "meta": {},
+              "pipelineAgg": "1",
+              "settings": {},
+              "type": "derivative"
+            }
+          ],
+          "query": "Where node = $node",
+          "refId": "B",
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Docker Containers - Disk IO Writes Bytes/min",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Swam Metricbeat Node",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 2,
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 28,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "7.2.1",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "container_name.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "1",
+                "size": "20"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "docker_network_out_bytes",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "Where node = $node",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Docker Containers - Network Out Bytes/min",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Swam Metricbeat Node",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
         "h": 5,
         "w": 6,
         "x": 12,
-        "y": 8
+        "y": 9
       },
+      "hiddenSeries": false,
       "id": 2,
       "interval": "1m",
       "legend": {
@@ -1058,10 +1078,11 @@
       "links": [],
       "nullPointMode": "connected",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.2.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1204,259 +1225,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Swam Metricbeat Node",
-      "fill": 1,
-      "fillGradient": 2,
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 0,
-        "y": 9
-      },
-      "id": 32,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "container_name.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "1",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "metrics": [
-            {
-              "field": "docker_diskio_write_bytes",
-              "hide": true,
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            },
-            {
-              "field": "1",
-              "id": "3",
-              "meta": {},
-              "pipelineAgg": "1",
-              "settings": {},
-              "type": "derivative"
-            }
-          ],
-          "query": "Where node = $node",
-          "refId": "B",
-          "timeField": "@timestamp"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Docker Containers - Disk IO Writes Bytes/min",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": null,
-          "format": "decbytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Swam Metricbeat Node",
-      "fill": 1,
-      "fillGradient": 2,
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 6,
-        "y": 9
-      },
-      "id": 28,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "container_name.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "1",
-                "size": "20"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "metrics": [
-            {
-              "field": "docker_network_out_bytes",
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "max"
-            }
-          ],
-          "query": "Where node = $node",
-          "refId": "A",
-          "timeField": "@timestamp"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Docker Containers - Network Out Bytes/min",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "decbytes",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": "Swam Metricbeat Overlay",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1465,6 +1241,7 @@
         "x": 18,
         "y": 11
       },
+      "hiddenSeries": false,
       "id": 16,
       "legend": {
         "avg": false,
@@ -1480,10 +1257,11 @@
       "links": [],
       "nullPointMode": "connected",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.2.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1624,7 +1402,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Swam Metricbeat Overlay",
+      "datasource": "Swam Metricbeat Node",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
@@ -1633,8 +1418,9 @@
         "x": 0,
         "y": 13
       },
-      "id": 24,
-      "interval": "1m",
+      "hiddenSeries": false,
+      "id": 30,
+      "interval": "30s",
       "legend": {
         "avg": false,
         "current": false,
@@ -1647,12 +1433,13 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.2.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1665,25 +1452,13 @@
           "bucketAggs": [
             {
               "fake": true,
-              "field": "overlay.keyword",
-              "id": "7",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "fake": true,
-              "field": "kafka_consumergroup_id.keyword",
-              "id": "6",
+              "field": "container_name.keyword",
+              "id": "3",
               "settings": {
                 "min_doc_count": 1,
                 "order": "desc",
                 "orderBy": "1",
-                "size": "0"
+                "size": "20"
               },
               "type": "terms"
             },
@@ -1700,23 +1475,23 @@
           ],
           "metrics": [
             {
-              "field": "kafka_consumergroup_offset",
+              "field": "docker_diskio_read_bytes",
               "hide": true,
               "id": "1",
               "meta": {},
               "settings": {},
-              "type": "avg"
+              "type": "max"
             },
             {
               "field": "1",
-              "id": "5",
+              "id": "4",
               "meta": {},
               "pipelineAgg": "1",
               "settings": {},
               "type": "derivative"
             }
           ],
-          "query": "Where overlay = $overlay",
+          "query": "Where node = $node",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -1725,7 +1500,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Kafka - Consumergroups Offset Change / min",
+      "title": "Docker Containers - Top 20 - Disk IO Reads Bytes/min",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -1741,7 +1516,8 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "decimals": null,
+          "format": "decbytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1763,65 +1539,67 @@
       }
     },
     {
-      "columns": [
-        {
-          "text": "Avg",
-          "value": "avg"
-        }
-      ],
-      "datasource": "Swam Metricbeat Overlay",
-      "fontSize": "100%",
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Swam Metricbeat Node",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 2,
       "gridPos": {
         "h": 4,
         "w": 6,
         "x": 6,
         "y": 13
       },
-      "id": 38,
-      "links": [],
-      "options": {},
-      "pageSize": null,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": true
+      "hiddenSeries": false,
+      "id": 26,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
       },
-      "styles": [
-        {
-          "alias": "Time",
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "date"
-        },
-        {
-          "alias": "",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "7.2.1",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
-          "alias": "{{term overlay.keyword}} - Data Size",
+          "alias": "",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "overlay.keyword",
+              "field": "container_name.keyword",
               "id": "3",
               "settings": {
                 "min_doc_count": 1,
                 "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
+                "orderBy": "1",
+                "size": "20"
               },
               "type": "terms"
             },
@@ -1836,31 +1614,32 @@
               "type": "date_histogram"
             }
           ],
+          "hide": true,
           "metrics": [
             {
-              "field": "zookeeper_mntr_approximate_data_size",
+              "field": "docker_network_in_bytes",
               "id": "1",
               "meta": {},
               "settings": {},
-              "type": "avg"
+              "type": "max"
             }
           ],
-          "query": "Where overlay = $overlay",
+          "query": "Where node = $node",
           "refId": "A",
           "timeField": "@timestamp"
         },
         {
-          "alias": "{{term overlay.keyword}} - Ephemeral Count",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "overlay.keyword",
+              "field": "container_name.keyword",
               "id": "3",
               "settings": {
                 "min_doc_count": 1,
+                "missing": null,
                 "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
+                "orderBy": "1",
+                "size": "20"
               },
               "type": "terms"
             },
@@ -1877,296 +1656,57 @@
           ],
           "metrics": [
             {
-              "field": "zookeeper_mntr_ephemerals_count",
+              "field": "docker_network_in_bytes",
               "id": "1",
               "meta": {},
               "settings": {},
               "type": "avg"
             }
           ],
-          "query": "Where overlay = $overlay",
           "refId": "B",
-          "timeField": "@timestamp"
-        },
-        {
-          "alias": "{{term overlay.keyword}} - Live Connections",
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "overlay.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "metrics": [
-            {
-              "field": "zookeeper_mntr_num_alive_connections",
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            }
-          ],
-          "query": "Where overlay = $overlay",
-          "refId": "C",
-          "timeField": "@timestamp"
-        },
-        {
-          "alias": "{{term overlay.keyword}} - File Descriptors",
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "overlay.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "metrics": [
-            {
-              "field": "zookeeper_mntr_open_file_descriptor_count",
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            }
-          ],
-          "query": "Where overlay = $overlay",
-          "refId": "D",
-          "timeField": "@timestamp"
-        },
-        {
-          "alias": "{{term overlay.keyword}} - Packets Received",
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "overlay.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "metrics": [
-            {
-              "field": "zookeeper_mntr_packets_received",
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            }
-          ],
-          "query": "Where overlay = $overlay",
-          "refId": "E",
-          "timeField": "@timestamp"
-        },
-        {
-          "alias": "{{term overlay.keyword}} - Packets Sent",
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "overlay.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "metrics": [
-            {
-              "field": "zookeeper_mntr_packets_sent",
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            }
-          ],
-          "query": "Where overlay = $overlay",
-          "refId": "F",
-          "timeField": "@timestamp"
-        },
-        {
-          "alias": "{{term overlay.keyword}} - Outstanding Requests",
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "overlay.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "metrics": [
-            {
-              "field": "zookeeper_mntr_outstanding_requests",
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            }
-          ],
-          "query": "Where overlay = $overlay",
-          "refId": "G",
-          "timeField": "@timestamp"
-        },
-        {
-          "alias": "{{term overlay.keyword}} - Watch Count",
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "overlay.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "metrics": [
-            {
-              "field": "zookeeper_mntr_watch_count",
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            }
-          ],
-          "query": "Where overlay = $overlay",
-          "refId": "H",
-          "timeField": "@timestamp"
-        },
-        {
-          "alias": "{{term overlay.keyword}} - Znode Count",
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "overlay.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "metrics": [
-            {
-              "field": "zookeeper_mntr_znode_count",
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            }
-          ],
-          "query": "Where overlay = $overlay",
-          "refId": "I",
           "timeField": "@timestamp"
         }
       ],
-      "timeFrom": "2m",
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "Zookeeper",
-      "transform": "timeseries_aggregations",
-      "type": "table"
+      "title": "Docker Containers - Top 20 - Network In Bytes/min",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {
@@ -2177,14 +1717,22 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Swam Metricbeat Node",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 1,
       "gridPos": {
         "h": 4,
         "w": 6,
         "x": 12,
-        "y": 13
+        "y": 14
       },
+      "hiddenSeries": false,
       "id": 4,
       "legend": {
         "avg": false,
@@ -2201,10 +1749,11 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.2.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2376,6 +1925,13 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Swam Metricbeat Overlay",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
@@ -2384,6 +1940,7 @@
         "x": 18,
         "y": 16
       },
+      "hiddenSeries": false,
       "id": 8,
       "legend": {
         "avg": false,
@@ -2399,10 +1956,11 @@
       "links": [],
       "nullPointMode": "connected",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.2.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2585,6 +2143,13 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Swam Metricbeat Overlay",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 1,
       "gridPos": {
@@ -2593,6 +2158,7 @@
         "x": 0,
         "y": 17
       },
+      "hiddenSeries": false,
       "id": 20,
       "interval": "1m",
       "legend": {
@@ -2609,10 +2175,11 @@
       "links": [],
       "nullPointMode": "connected",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.2.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2725,42 +2292,48 @@
       }
     },
     {
-      "aliasColors": {
-        "Average system.memory.actual.used.pct": "#bf1b00",
-        "Average system.memory.used.pct": "#f9ba8f"
-      },
+      "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Swam Metricbeat Node",
+      "datasource": "Swam Metricbeat Overlay",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 2,
       "gridPos": {
         "h": 4,
         "w": 6,
         "x": 6,
         "y": 17
       },
-      "id": 44,
+      "hiddenSeries": false,
+      "id": 24,
+      "interval": "1m",
       "legend": {
         "avg": false,
-        "current": true,
-        "max": true,
-        "min": true,
-        "rightSide": false,
+        "current": false,
+        "max": false,
+        "min": false,
         "show": false,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.2.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2770,12 +2343,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "node.keyword",
-              "id": "5",
+              "field": "overlay.keyword",
+              "id": "7",
               "settings": {
                 "min_doc_count": 1,
                 "order": "desc",
@@ -2786,12 +2358,12 @@
             },
             {
               "fake": true,
-              "field": "system_network_name.keyword",
-              "id": "4",
+              "field": "kafka_consumergroup_id.keyword",
+              "id": "6",
               "settings": {
                 "min_doc_count": 1,
                 "order": "desc",
-                "orderBy": "_term",
+                "orderBy": "1",
                 "size": "0"
               },
               "type": "terms"
@@ -2807,17 +2379,25 @@
               "type": "date_histogram"
             }
           ],
-          "hide": false,
           "metrics": [
             {
-              "field": "system_network_out_bytes",
+              "field": "kafka_consumergroup_offset",
+              "hide": true,
               "id": "1",
               "meta": {},
               "settings": {},
-              "type": "max"
+              "type": "avg"
+            },
+            {
+              "field": "1",
+              "id": "5",
+              "meta": {},
+              "pipelineAgg": "1",
+              "settings": {},
+              "type": "derivative"
             }
           ],
-          "query": "Where node = $node",
+          "query": "Where overlay = $overlay",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -2826,10 +2406,10 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "System Network Outward",
+      "title": "Kafka - Consumergroups Offset Change / min",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -2842,22 +2422,20 @@
       },
       "yaxes": [
         {
-          "decimals": null,
-          "format": "decbytes",
-          "label": "percentage",
+          "format": "short",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": "0",
           "show": true
         },
         {
-          "decimals": null,
-          "format": "decbytes",
-          "label": "bytes",
+          "format": "short",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -2874,14 +2452,22 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Swam Metricbeat Node",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
         "h": 4,
         "w": 6,
         "x": 12,
-        "y": 17
+        "y": 18
       },
+      "hiddenSeries": false,
       "id": 42,
       "legend": {
         "avg": false,
@@ -2898,10 +2484,11 @@
       "links": [],
       "nullPointMode": "connected",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.2.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2996,7 +2583,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 19,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -3004,7 +2591,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -3031,7 +2621,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -3090,5 +2683,5 @@
   "timezone": "",
   "title": "Metricbeat - Overview",
   "uid": "MCOGxAWZk",
-  "version": 33
+  "version": 32
 }

@@ -1,5 +1,7 @@
 CREATE STREAM swarm_journal_json(
-  container STRUCT<id STRING, name STRING>, event STRUCT<created STRING>,
+  `@timestamp` STRING,
+  container STRUCT<id STRING, name STRING>,
+  event STRUCT<created STRING>,
   host STRUCT<hostname STRING>,
   journald STRUCT<custom STRUCT<image_name STRING>>,
   log STRUCT<syslog STRUCT<facility_name STRING, priority INTEGER>>,
@@ -10,12 +12,22 @@ CREATE STREAM swarm_journal_json(
 WITH (KAFKA_TOPIC='swarm_journal_raw', VALUE_FORMAT='JSON');
 
 CREATE STREAM swarm_journal_avro WITH (KAFKA_TOPIC='swarm_journal_avro',VALUE_FORMAT='AVRO') AS
-SELECT * FROM swarm_journal_json;
-
-
-select * from swarm_journal_avro WHERE journald->custom->image_name LIKE '%metricbeat%' AND SUBSTRING(message,1,1) = '{' EMIT CHANGES LIMIT 4;
-
-CREATE STREAM swarm_journal_metricbeat WITH (KAFKA_TOPIC='swarm_journal_metricbeat',VALUE_FORMAT='AVRO') AS
-SELECT host->hostname AS node, message AS json 
-FROM swarm_journal_avro
-WHERE journald->custom->image_name LIKE '%metricbeat%' AND SUBSTRING(message,1,1) = '{';
+SELECT  CASE WHEN SUBSTRING(message,1,1) = '{' THEN
+          CASE  WHEN journald->custom->image_name LIKE '%metricbeat%' AND SUBSTRING(message,1,1) = '{' THEN 'metricbeat'
+                WHEN EXTRACTJSONFIELD(message, '$.source') IS NOT NULL THEN EXTRACTJSONFIELD(message, '$.source')
+          END
+        ELSE 'logs' END AS destination,
+        `@timestamp` AS ingested,
+        container->id AS containerId,
+        container->name AS containername,
+        event->created AS created,
+        host->hostname AS node,
+        journald->custom->image_name AS imagename,
+        log->syslog->facility_name AS logfacility,
+        log->syslog->priority AS logpriority,
+        message,
+        process->name AS processname,
+        syslog->identifier AS syslogidentifier,
+        systemd->transport AS systemdtransport
+FROM swarm_journal_json
+EMIT CHANGES;

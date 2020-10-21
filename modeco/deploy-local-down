@@ -62,6 +62,20 @@ if [[ "module_swarm_journal_ksqldb_ksql_server_queries_volume" == "$prefix"* ]] 
 		done;
 	fi
 	
+if [[ "module_swarm_journal_ksqldb_dev_ksql_server_queries_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_ksqldb_dev_ksql_server_queries_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_ksqldb_dev_ksql_server_queries_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
 if [[ "module_swarm_journal_kz_kafka_secrets_volume" == "$prefix"* ]] ; then
 		continue="true"
 		while [[ "true" == "$continue" ]] ;
@@ -152,6 +166,20 @@ if [[ "module_swarm_journal_metrics_overlay_metrics_overlay_volume" == "$prefix"
 		do
 			executionplane docker volume rm "module_swarm_journal_metrics_overlay_metrics_overlay_volume"
 			result=$(docker volume ls | grep "module_swarm_journal_metrics_overlay_metrics_overlay_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_schema_registry_schema_registry_secrets_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_schema_registry_schema_registry_secrets_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_schema_registry_schema_registry_secrets_volume")
 			if [[ "$result" == "" ]] ; then
 				continue="false"
 			else
