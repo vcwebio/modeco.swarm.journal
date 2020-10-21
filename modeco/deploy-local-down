@@ -48,6 +48,20 @@ if [[ "module_swarm_journal_ingest_logs_journalbeat_volume" == "$prefix"* ]] ; t
 		done;
 	fi
 	
+if [[ "module_swarm_journal_ksqldb_ksql_server_queries_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_ksqldb_ksql_server_queries_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_ksqldb_ksql_server_queries_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
 if [[ "module_swarm_journal_kz_kafka_secrets_volume" == "$prefix"* ]] ; then
 		continue="true"
 		while [[ "true" == "$continue" ]] ;
@@ -152,20 +166,6 @@ if [[ "module_swarm_journal_export_streamsets_volume" == "$prefix"* ]] ; then
 		do
 			executionplane docker volume rm "module_swarm_journal_export_streamsets_volume"
 			result=$(docker volume ls | grep "module_swarm_journal_export_streamsets_volume")
-			if [[ "$result" == "" ]] ; then
-				continue="false"
-			else
-				sleep 3;
-			fi
-		done;
-	fi
-	
-if [[ "module_swarm_journal_processor_streamsets_volume" == "$prefix"* ]] ; then
-		continue="true"
-		while [[ "true" == "$continue" ]] ;
-		do
-			executionplane docker volume rm "module_swarm_journal_processor_streamsets_volume"
-			result=$(docker volume ls | grep "module_swarm_journal_processor_streamsets_volume")
 			if [[ "$result" == "" ]] ; then
 				continue="false"
 			else

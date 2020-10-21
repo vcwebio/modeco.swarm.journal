@@ -1,6 +1,7 @@
 ekg_elasticsearch_volume
 ekg_grafana_volume
 ingest_logs_journalbeat_volume
+ksqldb_ksql_server_queries_volume
 kz_kafka_secrets_volume
 kz_kafka_data_volume
 kz_zookeeper_secrets_volume
@@ -9,5 +10,4 @@ kz_zookeeper_log_volume
 metrics_node_metrics_node_volume
 metrics_overlay_metrics_overlay_volume
 export_streamsets_volume
-processor_streamsets_volume
 
